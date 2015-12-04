@@ -2,6 +2,7 @@
 
 # Third-party imports
 from flask import Flask, current_app, jsonify
+from flask.ext.cors import CORS
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -46,6 +47,7 @@ def get_app(
     :param bool reflect_all: Include all database tables in the API service
     """
     app = Flask('sandman2')
+    CORS(app)
     app.config['SQLALCHEMY_DATABASE_URI'] = database_uri
     app.config['SANDMAN2_READ_ONLY'] = read_only
     db.init_app(app)
